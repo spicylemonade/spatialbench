@@ -53,18 +53,19 @@ function App() {
 
       {/* Navigation */}
       <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
-        <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-2 font-semibold text-lg tracking-tight">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+          <div className="flex items-center gap-2 font-semibold text-base sm:text-lg tracking-tight">
             <div className="bg-black text-white p-1 rounded">
               <Box size={18} strokeWidth={3} />
             </div>
-            <span>SpatialBench</span>
+            <span className="hidden sm:inline">SpatialBench</span>
+            <span className="sm:hidden">SB</span>
           </div>
-          <div className="flex gap-6 text-sm font-medium text-gray-500">
-            <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="hover:text-black transition-colors">Leaderboard</button>
+          <div className="flex gap-3 sm:gap-6 text-xs sm:text-sm font-medium text-gray-500">
+            <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="hover:text-black transition-colors hidden sm:inline">Leaderboard</button>
             <button onClick={() => document.getElementById('practice')?.scrollIntoView({ behavior: 'smooth' })} className="hover:text-black transition-colors">Practice</button>
             <button onClick={() => setShowAbout(true)} className="hover:text-black transition-colors">About</button>
-            <a href="/spatialbench/spatialbench.pdf" target="_blank" rel="noopener noreferrer" className="hover:text-black transition-colors">Proof of Completeness</a>
+            <a href="/spatialbench/spatialbench.pdf" target="_blank" rel="noopener noreferrer" className="hover:text-black transition-colors hidden md:inline whitespace-nowrap">Proof</a>
             <a href="https://github.com/spicylemonade/spatialbench" target="_blank" rel="noopener noreferrer" className="text-black hover:text-gray-700 transition-colors">GitHub</a>
           </div>
         </div>
