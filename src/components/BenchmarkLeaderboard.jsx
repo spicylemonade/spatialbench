@@ -67,37 +67,6 @@ export default function BenchmarkLeaderboard() {
         </div>
       )}
 
-      {/* Structural Foundation */}
-      <div className="mb-10 px-4 sm:px-8 py-6 bg-gray-50/50 border-y border-gray-200">
-        <h3 className="text-base font-semibold text-gray-900 mb-4 tracking-tight">Structural Foundation</h3>
-        <div className="text-sm text-gray-800 leading-relaxed space-y-3 font-serif">
-          <p>
-            This benchmark excludes one-dimensional geometry as topologically trivial (limited to <span className="font-serif italic">ℝ</span> and <span className="font-serif italic">S</span><sup>1</sup>), focusing instead on the rigorous evaluation of spatial reasoning in <span className="font-serif italic">ℝ</span><sup>2</sup> and <span className="font-serif italic">ℝ</span><sup>3</sup>.
-          </p>
-          {(showFullFoundation || typeof window !== 'undefined' && window.innerWidth >= 768) && (
-            <>
-              <p>
-                The 2D component targets the full Euclidean group <span className="font-serif italic">E</span>(2), specifically assessing chirality and orientation sensitivity through path integration on directed graphs with non-trivial cycles, thereby capturing the complexity of planar manifolds beyond simple rotation.
-              </p>
-              <p>
-                In three dimensions, the benchmark evaluates competence within the special Euclidean group <span className="font-serif italic">SE</span>(3) ≅ <span className="font-serif italic">SO</span>(3) ⋉ <span className="font-serif italic">ℝ</span><sup>3</sup>, requiring the agent to parameterize non-Abelian rotations—formally modelled by unit quaternions in <span className="font-serif italic">Sp</span>(1)—and solve inverse projection problems <span className="font-serif italic">π</span>: <span className="font-serif italic">ℝ</span><sup>3</sup> → <span className="font-serif italic">ℝ</span><sup>2</sup>. This structure necessitates both the rigorous application of rigid-body transformations and the amodal completion of occluded geometries inherent to Shepard-Metzler tasks.
-              </p>
-            </>
-          )}
-        </div>
-        {typeof window !== 'undefined' && window.innerWidth < 768 && (
-          <button
-            onClick={() => setShowFullFoundation(!showFullFoundation)}
-            className="mt-3 text-xs text-blue-600 hover:text-blue-800 font-medium"
-          >
-            {showFullFoundation ? 'Show less' : 'Read more...'}
-          </button>
-        )}
-        <p className="text-xs text-gray-500 italic mt-4 text-right">
-          — Alejandro Zarzuelo
-        </p>
-      </div>
-
       <div className="mb-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 px-4 sm:px-0">
         <div className="flex-1">
           <h2 className="text-xl sm:text-2xl font-semibold tracking-tight text-gray-900">Spatial Reasoning Benchmark</h2>
@@ -204,6 +173,37 @@ export default function BenchmarkLeaderboard() {
       </div>
       <div className="mt-2 text-xs text-gray-500 text-center px-4">
         <span className="font-medium">Note:</span> Using probability-normalized scoring, state-of-the-art AI models score just above the 5% random guessing baseline, while humans achieve 80%.
+      </div>
+
+      {/* Structural Foundation */}
+      <div className="mt-10 px-4 sm:px-8 py-6 bg-gray-50/50 border-y border-gray-200">
+        <h3 className="text-base font-semibold text-gray-900 mb-4 tracking-tight">Structural Foundation</h3>
+        <div className="text-sm text-gray-800 leading-relaxed space-y-3 font-serif">
+          <p>
+            This benchmark excludes one-dimensional geometry as topologically trivial (limited to <span className="font-serif italic">ℝ</span> and <span className="font-serif italic">S</span><sup>1</sup>), focusing instead on the rigorous evaluation of spatial reasoning in <span className="font-serif italic">ℝ</span><sup>2</sup> and <span className="font-serif italic">ℝ</span><sup>3</sup>.
+          </p>
+          {(showFullFoundation || typeof window !== 'undefined' && window.innerWidth >= 768) && (
+            <>
+              <p>
+                The 2D component targets the full Euclidean group <span className="font-serif italic">E</span>(2), specifically assessing chirality and orientation sensitivity through path integration on directed graphs with non-trivial cycles, thereby capturing the complexity of planar manifolds beyond simple rotation.
+              </p>
+              <p>
+                In three dimensions, the benchmark evaluates competence within the special Euclidean group <span className="font-serif italic">SE</span>(3) ≅ <span className="font-serif italic">SO</span>(3) ⋉ <span className="font-serif italic">ℝ</span><sup>3</sup>, requiring the agent to parameterize non-Abelian rotations—formally modelled by unit quaternions in <span className="font-serif italic">Sp</span>(1)—and solve inverse projection problems <span className="font-serif italic">π</span>: <span className="font-serif italic">ℝ</span><sup>3</sup> → <span className="font-serif italic">ℝ</span><sup>2</sup>. This structure necessitates both the rigorous application of rigid-body transformations and the amodal completion of occluded geometries inherent to Shepard-Metzler tasks.
+              </p>
+            </>
+          )}
+        </div>
+        {typeof window !== 'undefined' && window.innerWidth < 768 && (
+          <button
+            onClick={() => setShowFullFoundation(!showFullFoundation)}
+            className="mt-3 text-xs text-blue-600 hover:text-blue-800 font-medium"
+          >
+            {showFullFoundation ? 'Show less' : 'Read more...'}
+          </button>
+        )}
+        <p className="text-xs text-gray-500 italic mt-4 text-right">
+          — Alejandro Zarzuelo
+        </p>
       </div>
     </section>
   );
