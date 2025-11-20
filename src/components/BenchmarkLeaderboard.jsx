@@ -161,39 +161,43 @@ export default function BenchmarkLeaderboard() {
         </table>
       </div>
 
-      {/* Mobile Card Layout */}
-      <div className="sm:hidden space-y-3 mx-4">
-        {BENCHMARK_DATA.map((row) => (
-          <div key={row.model} className={`border border-gray-200 rounded-lg p-4 ${row.isBaseline ? 'bg-gray-50/50' : 'bg-white'}`}>
-            <div className="flex items-start justify-between mb-3">
-              <div className="flex items-center gap-2 flex-1 min-w-0">
-                <span className="text-gray-400 font-mono text-xs flex-shrink-0">#{row.rank}</span>
+      {/* Mobile Compact Table */}
+      <div className="sm:hidden border border-gray-200 rounded-lg overflow-hidden shadow-sm mx-4">
+        <div className="bg-gray-50 border-b border-gray-200 px-3 py-2 flex items-center justify-between text-xs text-gray-500 font-medium">
+          <span className="flex-1"># Model</span>
+          <span>Pass@1 (%)</span>
+        </div>
+        <div className="divide-y divide-gray-100 bg-white">
+          {BENCHMARK_DATA.map((row) => (
+            <div key={row.model} className={`px-3 py-3 ${row.isBaseline ? 'bg-gray-50/50' : ''}`}>
+              <div className="flex items-center gap-2 mb-2">
+                <span className="text-gray-400 font-mono text-xs w-5 flex-shrink-0">#{row.rank}</span>
                 <div className={`w-6 h-6 rounded border flex items-center justify-center p-1 flex-shrink-0 ${
                   row.isBaseline ? 'bg-gray-100 border-gray-200 text-gray-600' : 'bg-gray-50 border-gray-100 text-gray-900'
                 }`}>
                   {COMPANY_LOGOS[row.company]}
                 </div>
                 <div className="min-w-0 flex-1">
-                  <div className={`font-medium text-sm ${row.isBaseline ? 'text-gray-600' : 'text-gray-900'}`}>{row.model}</div>
+                  <div className={`font-medium text-sm leading-tight ${row.isBaseline ? 'text-gray-600' : 'text-gray-900'}`}>{row.model}</div>
                   <div className="text-xs text-gray-500">{row.company}</div>
                 </div>
               </div>
-            </div>
-            <div className="flex items-center gap-3">
-              <span className="font-mono font-bold text-lg text-gray-900">{row.pass1.toFixed(1)}%</span>
-              <div className="flex-1 h-2.5 bg-gray-100 rounded-full overflow-hidden">
-                <div 
-                  className={`h-full rounded-full transition-all duration-1000 ${
-                    row.pass1 > 80 ? 'bg-emerald-500' : 
-                    row.pass1 > 50 ? 'bg-blue-500' : 
-                    row.pass1 > 20 ? 'bg-amber-500' : 'bg-red-500'
-                  }`}
-                  style={{ width: `${row.pass1}%` }}
-                />
+              <div className="flex items-center gap-2 pl-7">
+                <span className="font-mono font-medium text-gray-700 text-sm w-10 flex-shrink-0">{row.pass1.toFixed(1)}</span>
+                <div className="flex-1 h-2 bg-gray-100 rounded-full overflow-hidden">
+                  <div 
+                    className={`h-full rounded-full transition-all duration-1000 ${
+                      row.pass1 > 80 ? 'bg-emerald-500' : 
+                      row.pass1 > 50 ? 'bg-blue-500' : 
+                      row.pass1 > 20 ? 'bg-amber-500' : 'bg-red-500'
+                    }`}
+                    style={{ width: `${row.pass1}%` }}
+                  />
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
       <div className="mt-4 text-xs text-gray-400 text-center px-4">
         Last updated: January 2025 • 50 problems (25 3D, 25 2D)
