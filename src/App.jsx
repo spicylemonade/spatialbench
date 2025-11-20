@@ -64,7 +64,7 @@ function App() {
             <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="hover:text-black transition-colors">Leaderboard</button>
             <button onClick={() => document.getElementById('practice')?.scrollIntoView({ behavior: 'smooth' })} className="hover:text-black transition-colors">Practice</button>
             <button onClick={() => setShowAbout(true)} className="hover:text-black transition-colors">About</button>
-            <a href="/spatialbench.pdf" target="_blank" rel="noopener noreferrer" className="hover:text-black transition-colors">Proof of Completeness</a>
+            <a href="/spatialbench/spatialbench.pdf" target="_blank" rel="noopener noreferrer" className="hover:text-black transition-colors">Proof of Completeness</a>
             <a href="https://github.com/spicylemonade/spatialbench" target="_blank" rel="noopener noreferrer" className="text-black hover:text-gray-700 transition-colors">GitHub</a>
           </div>
         </div>
