@@ -17,12 +17,14 @@ Visit the live benchmark at: **https://spicylemonade.github.io/spatialbench/**
 
 ## 📊 Current Results
 
-- **Human Baseline**: 90% Pass@1
-- **GPT-5.1 (High Reasoning)**: 20% Pass@1
-- **Gemini 3.0 Pro Preview**: 18% Pass@1
-- **Random Guessing**: 15% Pass@1
+Using the **Probability Equivalence Method** (Spicy Lemonade Power Law):
 
-Current AI models struggle significantly with spatial reasoning tasks that humans excel at, performing barely above random chance.
+- **Human Baseline**: 80.0%
+- **Gemini 3.0 Pro Preview**: 9.55%
+- **GPT-5.1 (High Reasoning)**: 7.51%
+- **Random Guessing**: 5.0%
+
+Current AI models struggle significantly with spatial reasoning tasks that humans excel at, scoring just above the 5% random baseline.
 
 ## 🛠️ Technology Stack
 
@@ -51,7 +53,18 @@ Models are evaluated on 50 total problems:
 - 25 3D mental rotation tasks (Shepard-Metzler style with 4 multiple-choice options)
 - 25 2D path tracing tasks (with 20 possible numeric endpoints)
 
-We calculate Pass@1 accuracy across all 50 problems.
+### Probability Equivalence Scoring (Spicy Lemonade Power Law)
+
+Since 3D questions have a 25% random guess rate (1/4) while 2D questions have only 5% (1/20), we normalize the difficulty:
+
+1. **Calculate raw scores** for each section independently
+2. **Adjust 3D score**: Raise to the power of 2.16 to match 2D difficulty
+   - Exponent derived from: 0.25^n = 0.05, solving n ≈ 2.16
+3. **Final score**: Average of raw 2D score and adjusted 3D score
+
+**Formula:** `Final = (S_2D + S_3D^2.16) / 2`
+
+This ensures random guessing yields exactly 5% and prevents "stat-padding" on easier questions.
 
 ## 🤝 Contributing
 

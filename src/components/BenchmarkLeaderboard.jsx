@@ -22,10 +22,10 @@ const COMPANY_LOGOS = {
 };
 
 const BENCHMARK_DATA = [
-  { rank: 1, model: 'Human Baseline', company: 'Human', pass1: 90.0, isBaseline: true },
-  { rank: 2, model: 'GPT-5.1 (High Reasoning)', company: 'OpenAI', pass1: 20.0 },
-  { rank: 3, model: 'Gemini 3.0 Pro Preview', company: 'Google', pass1: 18.0 },
-  { rank: 4, model: 'Random Guessing', company: 'Baseline', pass1: 15.0, isBaseline: true },
+  { rank: 1, model: 'Human Baseline', company: 'Human', pass1: 80.0, isBaseline: true },
+  { rank: 2, model: 'Gemini 3.0 Pro Preview', company: 'Google', pass1: 9.55 },
+  { rank: 3, model: 'GPT-5.1 (High Reasoning)', company: 'OpenAI', pass1: 7.51 },
+  { rank: 4, model: 'Random Guessing', company: 'Baseline', pass1: 5.0, isBaseline: true },
 ];
 
 export default function BenchmarkLeaderboard() {
@@ -47,8 +47,17 @@ export default function BenchmarkLeaderboard() {
              <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
                <Info size={18} /> Methodology
              </h3>
-             <p className="text-gray-600 leading-relaxed text-sm">
-               Models are evaluated on 50 total problems: 25 3D mental rotation tasks (Shepard-Metzler style with 4 multiple-choice options) and 25 2D path tracing tasks (with 20 possible numeric endpoints). We calculate Pass@1 accuracy across all 50 problems.
+             <p className="text-gray-600 leading-relaxed text-sm mb-4">
+               Models are evaluated on 50 total problems: 25 3D mental rotation tasks (Shepard-Metzler style with 4 multiple-choice options) and 25 2D path tracing tasks (with 20 possible numeric endpoints).
+             </p>
+             <div className="bg-blue-50 border-l-4 border-blue-500 p-4 mb-4">
+               <p className="text-sm text-gray-700 font-medium mb-2">Probability Equivalence Scoring</p>
+               <p className="text-xs text-gray-600 leading-relaxed">
+                 Since 3D questions (1/4 chance) are easier to guess than 2D questions (1/20 chance), we apply the <strong>Spicy Lemonade Power Law</strong>: the 3D score is raised to the power of 2.16 to normalize difficulty. The final score is the average of the raw 2D score and the adjusted 3D score. This ensures random guessing yields exactly 5% across both sections.
+               </p>
+             </div>
+             <p className="text-xs text-gray-500">
+               <strong>Formula:</strong> Final = (S<sub>2D</sub> + S<sub>3D</sub><sup>2.16</sup>) / 2
              </p>
           </div>
         </div>
@@ -123,7 +132,7 @@ export default function BenchmarkLeaderboard() {
         Last updated: January 2025 • 50 problems (25 3D, 25 2D)
       </div>
       <div className="mt-2 text-xs text-gray-500 text-center">
-        <span className="font-medium">Note:</span> State-of-the-art AI models perform barely above random guessing on spatial reasoning tasks that humans master easily.
+        <span className="font-medium">Note:</span> Using probability-normalized scoring, state-of-the-art AI models score just above the 5% random guessing baseline, while humans achieve 80%.
       </div>
     </section>
   );
