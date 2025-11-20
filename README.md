@@ -17,7 +17,7 @@ Visit the live benchmark at: **https://spicylemonade.github.io/spatialbench/**
 
 ## 📊 Current Results
 
-Using the **Probability Equivalence Method** (Spicy Lemonade Power Law):
+Using the **Probability Equivalence Method**:
 
 - **Human Baseline**: 80.0%
 - **Gemini 3.0 Pro Preview**: 9.55%
@@ -53,7 +53,7 @@ Models are evaluated on 50 total problems:
 - 25 3D mental rotation tasks (Shepard-Metzler style with 4 multiple-choice options)
 - 25 2D path tracing tasks (with 20 possible numeric endpoints)
 
-### Probability Equivalence Scoring (Spicy Lemonade Power Law)
+### Probability Equivalence Scoring
 
 Since 3D questions have a 25% random guess rate (1/4) while 2D questions have only 5% (1/20), we normalize the difficulty:
 

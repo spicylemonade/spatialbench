@@ -53,7 +53,7 @@ export default function BenchmarkLeaderboard() {
              <div className="bg-blue-50 border-l-4 border-blue-500 p-4 mb-4">
                <p className="text-sm text-gray-700 font-medium mb-2">Probability Equivalence Scoring</p>
                <p className="text-xs text-gray-600 leading-relaxed">
-                 Since 3D questions (1/4 chance) are easier to guess than 2D questions (1/20 chance), we apply the <strong>Spicy Lemonade Power Law</strong>: the 3D score is raised to the power of 2.16 to normalize difficulty. The final score is the average of the raw 2D score and the adjusted 3D score. This ensures random guessing yields exactly 5% across both sections.
+                 Since 3D questions (1/4 chance) are easier to guess than 2D questions (1/20 chance), we normalize difficulty by raising the 3D score to the power of 2.16. The final score is the average of the raw 2D score and the adjusted 3D score. This ensures random guessing yields exactly 5% across both sections.
                </p>
              </div>
              <p className="text-xs text-gray-500">
