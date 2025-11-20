@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import * as THREE from 'three';
+import { mergeGeometries } from 'three/examples/jsm/utils/BufferGeometryUtils.js';
 import { BLOCK_COLOR, EDGE_COLOR } from '../utils/spatialLogic';
 
 const ShapeRenderer = ({ voxels, width, height, cameraPosition = null, randomView = false }) => {
@@ -39,36 +40,37 @@ const ShapeRenderer = ({ voxels, width, height, cameraPosition = null, randomVie
     dirLight.position.set(10, 20, 10);
     scene.add(dirLight);
 
-    const geometry = new THREE.BoxGeometry(1, 1, 1);
+    const baseGeometry = new THREE.BoxGeometry(1, 1, 1);
     const material = new THREE.MeshStandardMaterial({ 
       color: BLOCK_COLOR, 
       roughness: 0.2,
       metalness: 0.1
     });
-    // Note: linewidth > 1 doesn't work in WebGL, so we use a darker color for visibility
-    const lineMaterial = new THREE.LineBasicMaterial({ 
-      color: 0x000000,  // Use black for better visibility across all browsers
-      linewidth: 1
-    });
-    const group = new THREE.Group();
+    const lineMaterial = new THREE.LineBasicMaterial({ color: EDGE_COLOR });
 
-    voxels.forEach(pos => {
-      const mesh = new THREE.Mesh(geometry, material);
-      mesh.position.set(...pos);
-      group.add(mesh);
-      
-      const edges = new THREE.EdgesGeometry(geometry);
-      const line = new THREE.LineSegments(edges, lineMaterial);
-      line.position.set(...pos);
-      group.add(line);
+    const geometries = voxels.map(([x, y, z]) => {
+      const geo = baseGeometry.clone();
+      geo.translate(x, y, z);
+      return geo;
     });
-    scene.add(group);
+
+    const mergedGeometry = mergeGeometries(geometries, true);
+    const mesh = new THREE.Mesh(mergedGeometry, material);
+    scene.add(mesh);
+
+    const edgeGeometry = new THREE.EdgesGeometry(mergedGeometry, 1);
+    const edgeLines = new THREE.LineSegments(edgeGeometry, lineMaterial);
+    scene.add(edgeLines);
+
     renderer.render(scene, camera);
 
     return () => {
       if (mountRef.current) mountRef.current.innerHTML = '';
-      geometry.dispose();
+      baseGeometry.dispose();
+      mergedGeometry.dispose();
+      edgeGeometry.dispose();
       material.dispose();
+      lineMaterial.dispose();
       renderer.dispose();
     };
   }, [voxels, width, height, randomView, cameraPosition]);
