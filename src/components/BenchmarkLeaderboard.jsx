@@ -26,6 +26,7 @@ const BENCHMARK_DATA = [
   { rank: 2, model: 'Gemini 3.0 Pro Preview', company: 'Google', pass1: 9.55 },
   { rank: 3, model: 'GPT-5.1 (High Reasoning)', company: 'OpenAI', pass1: 7.51 },
   { rank: 4, model: 'Random Guessing', company: 'Baseline', pass1: 5.0, isBaseline: true },
+  { rank: 5, model: 'Claude Sonnet 4.5', company: 'Anthropic', pass1: 4.51 },
 ];
 
 export default function BenchmarkLeaderboard() {
