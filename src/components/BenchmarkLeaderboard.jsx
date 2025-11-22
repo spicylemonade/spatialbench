@@ -6,6 +6,8 @@ import GeminiLogo from '../logos/gemini-color.svg';
 import GrokLogo from '../logos/grok.svg';
 import QwenLogo from '../logos/qwen-color.svg';
 import MistralLogo from '../logos/mistral-color.svg';
+import MetaLogo from '../logos/meta-color.svg';
+import MiniMaxLogo from '../logos/minimax-color.svg';
 
 const COMPANY_LOGOS = {
   'OpenAI': <img src={OpenAILogo} alt="OpenAI" className="w-full h-full" />,
@@ -14,6 +16,8 @@ const COMPANY_LOGOS = {
   'xAI': <img src={GrokLogo} alt="xAI Grok" className="w-full h-full" />,
   'Qwen': <img src={QwenLogo} alt="Qwen" className="w-full h-full" />,
   'Mistral': <img src={MistralLogo} alt="Mistral" className="w-full h-full" />,
+  'Meta': <img src={MetaLogo} alt="Meta" className="w-full h-full" />,
+  'MiniMax': <img src={MiniMaxLogo} alt="MiniMax" className="w-full h-full" />,
   'Human': (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-full h-full">
       <circle cx="12" cy="8" r="4" />
@@ -31,11 +35,13 @@ const BENCHMARK_DATA = [
   { rank: 1, model: 'Human Baseline', company: 'Human', pass1: 80.0, isBaseline: true },
   { rank: 2, model: 'Qwen-2.5-VL-72B-Instruct', company: 'Qwen', pass1: 12.9 },
   { rank: 3, model: 'Gemini 3.0 Pro Preview', company: 'Google', pass1: 9.55 },
-  { rank: 4, model: 'GPT-5.1 (High Reasoning)', company: 'OpenAI', pass1: 7.51 },
-  { rank: 5, model: 'Pixtral 12B', company: 'Mistral', pass1: 5.05 },
-  { rank: 6, model: 'Random Guessing', company: 'Baseline', pass1: 5.0, isBaseline: true },
-  { rank: 7, model: 'Claude Sonnet 4.5', company: 'Anthropic', pass1: 4.51 },
-  { rank: 8, model: 'Grok 4', company: 'xAI', pass1: 2.95 },
+  { rank: 4, model: 'Llama 3.2', company: 'Meta', pass1: 8.3 },
+  { rank: 5, model: 'GPT-5.1 (High Reasoning)', company: 'OpenAI', pass1: 7.51 },
+  { rank: 6, model: 'Pixtral 12B', company: 'Mistral', pass1: 5.05 },
+  { rank: 7, model: 'Random Guessing', company: 'Baseline', pass1: 5.0, isBaseline: true },
+  { rank: 8, model: 'Claude Sonnet 4.5', company: 'Anthropic', pass1: 4.51 },
+  { rank: 9, model: 'MiniMax 01 Vision', company: 'MiniMax', pass1: 4.0 },
+  { rank: 10, model: 'Grok 4', company: 'xAI', pass1: 2.95 },
 ];
 
 export default function BenchmarkLeaderboard() {
@@ -94,88 +100,92 @@ export default function BenchmarkLeaderboard() {
 
       {/* Desktop Table */}
       <div className="hidden sm:block border border-gray-200 rounded-lg overflow-hidden shadow-sm">
-        <table className="w-full text-left text-sm">
-          <thead className="bg-gray-50 border-b border-gray-200 text-gray-500 font-medium">
-            <tr>
-              <th className="px-6 py-3 w-16 text-center">#</th>
-              <th className="px-6 py-3">Model</th>
-              <th className="px-6 py-3 w-1/2">Pass@1 (%)</th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-gray-100 bg-white">
-            {BENCHMARK_DATA.map((row) => (
-              <tr key={row.model} className={`transition-colors ${row.isBaseline ? 'bg-gray-50/50' : 'hover:bg-gray-50'}`}>
-                <td className="px-6 py-4 text-center text-gray-400 font-mono text-xs">{row.rank}</td>
-                <td className="px-6 py-4">
-                  <div className="flex items-center gap-3">
-                    <div className={`w-8 h-8 rounded border flex items-center justify-center p-1.5 flex-shrink-0 ${
-                      row.isBaseline ? 'bg-gray-100 border-gray-200 text-gray-600' : 'bg-gray-50 border-gray-100 text-gray-900'
-                    }`}>
-                      {COMPANY_LOGOS[row.company]}
-                    </div>
-                    <div>
-                      <div className={`font-medium ${row.isBaseline ? 'text-gray-600' : 'text-gray-900'}`}>{row.model}</div>
-                      <div className="text-xs text-gray-500">{row.company}</div>
-                    </div>
-                  </div>
-                </td>
-                <td className="px-6 py-4">
-                  <div className="flex items-center gap-4 w-full">
-                    <span className="font-mono font-medium text-gray-700 w-12 text-right">{row.pass1.toFixed(1)}</span>
-                    <div className="flex-1 h-2 bg-gray-100 rounded-full overflow-hidden max-w-[200px]">
-                       <div 
-                         className={`h-full rounded-full transition-all duration-1000 ${
-                            row.pass1 > 80 ? 'bg-emerald-500' : 
-                            row.pass1 > 50 ? 'bg-blue-500' : 
-                            row.pass1 > 20 ? 'bg-amber-500' : 'bg-red-500'
-                         }`}
-                         style={{ width: `${row.pass1}%` }}
-                       />
-                    </div>
-                  </div>
-                </td>
+        <div className="max-h-[400px] overflow-y-auto">
+          <table className="w-full text-left text-sm">
+            <thead className="bg-gray-50 border-b border-gray-200 text-gray-500 font-medium sticky top-0 z-10">
+              <tr>
+                <th className="px-6 py-3 w-16 text-center">#</th>
+                <th className="px-6 py-3">Model</th>
+                <th className="px-6 py-3 w-1/2">Pass@1 (%)</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody className="divide-y divide-gray-100 bg-white">
+              {BENCHMARK_DATA.map((row) => (
+                <tr key={row.model} className={`transition-colors ${row.isBaseline ? 'bg-gray-50/50' : 'hover:bg-gray-50'}`}>
+                  <td className="px-6 py-4 text-center text-gray-400 font-mono text-xs">{row.rank}</td>
+                  <td className="px-6 py-4">
+                    <div className="flex items-center gap-3">
+                      <div className={`w-8 h-8 rounded border flex items-center justify-center p-1.5 flex-shrink-0 ${
+                        row.isBaseline ? 'bg-gray-100 border-gray-200 text-gray-600' : 'bg-gray-50 border-gray-100 text-gray-900'
+                      }`}>
+                        {COMPANY_LOGOS[row.company]}
+                      </div>
+                      <div>
+                        <div className={`font-medium ${row.isBaseline ? 'text-gray-600' : 'text-gray-900'}`}>{row.model}</div>
+                        <div className="text-xs text-gray-500">{row.company}</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td className="px-6 py-4">
+                    <div className="flex items-center gap-4 w-full">
+                      <span className="font-mono font-medium text-gray-700 w-12 text-right">{row.pass1.toFixed(1)}</span>
+                      <div className="flex-1 h-2 bg-gray-100 rounded-full overflow-hidden max-w-[200px]">
+                         <div 
+                           className={`h-full rounded-full transition-all duration-1000 ${
+                              row.pass1 > 80 ? 'bg-emerald-500' : 
+                              row.pass1 > 50 ? 'bg-blue-500' : 
+                              row.pass1 > 20 ? 'bg-amber-500' : 'bg-red-500'
+                           }`}
+                           style={{ width: `${row.pass1}%` }}
+                         />
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
 
       {/* Mobile Compact Table */}
       <div className="sm:hidden border border-gray-200 rounded-lg overflow-hidden shadow-sm mx-4">
-        <div className="bg-gray-50 border-b border-gray-200 px-3 py-2 flex items-center justify-between text-xs text-gray-500 font-medium">
+        <div className="bg-gray-50 border-b border-gray-200 px-3 py-2 flex items-center justify-between text-xs text-gray-500 font-medium sticky top-0 z-10">
           <span className="flex-1"># Model</span>
           <span>Pass@1 (%)</span>
         </div>
-        <div className="divide-y divide-gray-100 bg-white">
-          {BENCHMARK_DATA.map((row) => (
-            <div key={row.model} className={`px-3 py-3 ${row.isBaseline ? 'bg-gray-50/50' : ''}`}>
-              <div className="flex items-center gap-2 mb-2">
-                <span className="text-gray-400 font-mono text-xs w-5 flex-shrink-0">#{row.rank}</span>
-                <div className={`w-6 h-6 rounded border flex items-center justify-center p-1 flex-shrink-0 ${
-                  row.isBaseline ? 'bg-gray-100 border-gray-200 text-gray-600' : 'bg-gray-50 border-gray-100 text-gray-900'
-                }`}>
-                  {COMPANY_LOGOS[row.company]}
+        <div className="max-h-[400px] overflow-y-auto">
+          <div className="divide-y divide-gray-100 bg-white">
+            {BENCHMARK_DATA.map((row) => (
+              <div key={row.model} className={`px-3 py-3 ${row.isBaseline ? 'bg-gray-50/50' : ''}`}>
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="text-gray-400 font-mono text-xs w-5 flex-shrink-0">#{row.rank}</span>
+                  <div className={`w-6 h-6 rounded border flex items-center justify-center p-1 flex-shrink-0 ${
+                    row.isBaseline ? 'bg-gray-100 border-gray-200 text-gray-600' : 'bg-gray-50 border-gray-100 text-gray-900'
+                  }`}>
+                    {COMPANY_LOGOS[row.company]}
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <div className={`font-medium text-sm leading-tight ${row.isBaseline ? 'text-gray-600' : 'text-gray-900'}`}>{row.model}</div>
+                    <div className="text-xs text-gray-500">{row.company}</div>
+                  </div>
                 </div>
-                <div className="min-w-0 flex-1">
-                  <div className={`font-medium text-sm leading-tight ${row.isBaseline ? 'text-gray-600' : 'text-gray-900'}`}>{row.model}</div>
-                  <div className="text-xs text-gray-500">{row.company}</div>
+                <div className="flex items-center gap-2 pl-7">
+                  <span className="font-mono font-medium text-gray-700 text-sm w-10 flex-shrink-0">{row.pass1.toFixed(1)}</span>
+                  <div className="flex-1 h-2 bg-gray-100 rounded-full overflow-hidden">
+                    <div 
+                      className={`h-full rounded-full transition-all duration-1000 ${
+                        row.pass1 > 80 ? 'bg-emerald-500' : 
+                        row.pass1 > 50 ? 'bg-blue-500' : 
+                        row.pass1 > 20 ? 'bg-amber-500' : 'bg-red-500'
+                      }`}
+                      style={{ width: `${row.pass1}%` }}
+                    />
+                  </div>
                 </div>
               </div>
-              <div className="flex items-center gap-2 pl-7">
-                <span className="font-mono font-medium text-gray-700 text-sm w-10 flex-shrink-0">{row.pass1.toFixed(1)}</span>
-                <div className="flex-1 h-2 bg-gray-100 rounded-full overflow-hidden">
-                  <div 
-                    className={`h-full rounded-full transition-all duration-1000 ${
-                      row.pass1 > 80 ? 'bg-emerald-500' : 
-                      row.pass1 > 50 ? 'bg-blue-500' : 
-                      row.pass1 > 20 ? 'bg-amber-500' : 'bg-red-500'
-                    }`}
-                    style={{ width: `${row.pass1}%` }}
-                  />
-                </div>
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
       <div className="mt-4 text-xs text-gray-400 text-center px-4">
