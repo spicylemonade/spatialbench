@@ -96,6 +96,72 @@ export const mutateVoxelStructure = (originalVoxels, mutationCount = 2) => {
     return current.map(v => [v[0] - center[0], v[1] - center[1], v[2] - center[2]]);
 };
 
+// Rotate a voxel coordinate by 90 degrees around x-axis
+const rotateX = (v) => [v[0], -v[2], v[1]];
+// Rotate a voxel coordinate by 90 degrees around y-axis  
+const rotateY = (v) => [v[2], v[1], -v[0]];
+// Rotate a voxel coordinate by 90 degrees around z-axis
+const rotateZ = (v) => [-v[1], v[0], v[2]];
+
+// Apply rotation function n times (n can be 0, 1, 2, or 3 for 0°, 90°, 180°, 270°)
+const rotateNTimes = (voxels, rotateFn, n) => {
+  let result = voxels;
+  for (let i = 0; i < n; i++) {
+    result = result.map(rotateFn);
+  }
+  return result;
+};
+
+// Normalize a shape by sorting voxels (for comparison)
+const normalizeShape = (voxels) => {
+  // Round to integers and sort lexicographically
+  const normalized = voxels.map(v => [
+    Math.round(v[0]),
+    Math.round(v[1]),
+    Math.round(v[2])
+  ]);
+  normalized.sort((a, b) => {
+    if (a[0] !== b[0]) return a[0] - b[0];
+    if (a[1] !== b[1]) return a[1] - b[1];
+    return a[2] - b[2];
+  });
+  return normalized.map(v => v.join(',')).join('|');
+};
+
+// Generate all 24 rotations of a shape (all 90-degree rotations of a cube)
+const generateAllRotations = (voxels) => {
+  const rotations = new Set();
+  
+  // Generate rotations systematically
+  // We'll iterate through combinations, but use a set to avoid duplicates
+  for (let xRot = 0; xRot < 4; xRot++) {
+    let rotated = rotateNTimes(voxels, rotateX, xRot);
+    for (let yRot = 0; yRot < 4; yRot++) {
+      let rotated2 = rotateNTimes(rotated, rotateY, yRot);
+      for (let zRot = 0; zRot < 4; zRot++) {
+        let rotated3 = rotateNTimes(rotated2, rotateZ, zRot);
+        rotations.add(normalizeShape(rotated3));
+      }
+    }
+  }
+  
+  return Array.from(rotations);
+};
+
+// Check if two shapes are isomorphic (same structure, accounting for rotations)
+// There are 24 rotations in the rotation group of a cube (SO(3) restricted to 90° increments)
+export const areShapesIsomorphic = (shape1, shape2) => {
+  // Quick check: different number of blocks means different shapes
+  if (shape1.length !== shape2.length) return false;
+  
+  // Normalize shape2 for comparison
+  const normalized2 = normalizeShape(shape2);
+  
+  // Generate all rotations of shape1 and check if any match shape2
+  const rotations1 = generateAllRotations(shape1);
+  return rotations1.includes(normalized2);
+};
+
 export const generateVoxelStructure = () => {
   const voxels = new Set();
   voxels.add('0,0,0');

@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from 'react';
 import * as THREE from 'three';
-import { mergeGeometries } from 'three/examples/jsm/utils/BufferGeometryUtils.js';
 import { BLOCK_COLOR, EDGE_COLOR } from '../utils/spatialLogic';
 
 const ShapeRenderer = ({ voxels, width, height, cameraPosition = null, randomView = false }) => {
@@ -40,37 +39,32 @@ const ShapeRenderer = ({ voxels, width, height, cameraPosition = null, randomVie
     dirLight.position.set(10, 20, 10);
     scene.add(dirLight);
 
-    const baseGeometry = new THREE.BoxGeometry(1, 1, 1);
+    const geometry = new THREE.BoxGeometry(1, 1, 1);
     const material = new THREE.MeshStandardMaterial({ 
       color: BLOCK_COLOR, 
       roughness: 0.2,
       metalness: 0.1
     });
-    const lineMaterial = new THREE.LineBasicMaterial({ color: EDGE_COLOR });
+    const lineMaterial = new THREE.LineBasicMaterial({ color: EDGE_COLOR, linewidth: 1 }); // Thinner lines
+    const group = new THREE.Group();
 
-    const geometries = voxels.map(([x, y, z]) => {
-      const geo = baseGeometry.clone();
-      geo.translate(x, y, z);
-      return geo;
+    voxels.forEach(pos => {
+      const mesh = new THREE.Mesh(geometry, material);
+      mesh.position.set(...pos);
+      group.add(mesh);
+      
+      const edges = new THREE.EdgesGeometry(geometry);
+      const line = new THREE.LineSegments(edges, lineMaterial);
+      line.position.set(...pos);
+      group.add(line);
     });
-
-    const mergedGeometry = mergeGeometries(geometries, true);
-    const mesh = new THREE.Mesh(mergedGeometry, material);
-    scene.add(mesh);
-
-    const edgeGeometry = new THREE.EdgesGeometry(mergedGeometry, 1);
-    const edgeLines = new THREE.LineSegments(edgeGeometry, lineMaterial);
-    scene.add(edgeLines);
-
+    scene.add(group);
     renderer.render(scene, camera);
 
     return () => {
       if (mountRef.current) mountRef.current.innerHTML = '';
-      baseGeometry.dispose();
-      mergedGeometry.dispose();
-      edgeGeometry.dispose();
+      geometry.dispose();
       material.dispose();
-      lineMaterial.dispose();
       renderer.dispose();
     };
   }, [voxels, width, height, randomView, cameraPosition]);

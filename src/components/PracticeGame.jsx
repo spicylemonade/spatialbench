@@ -3,7 +3,7 @@ import { CheckCircle, XCircle, ArrowRight, RefreshCw } from 'lucide-react';
 import * as THREE from 'three'; // Needed for vector math
 import ShapeRenderer from './ShapeRenderer';
 import PathTracingRenderer from './PathTracingRenderer';
-import { generateVoxelStructure, mutateVoxelStructure, generatePathData } from '../utils/spatialLogic';
+import { generateVoxelStructure, mutateVoxelStructure, generatePathData, areShapesIsomorphic } from '../utils/spatialLogic';
 
 // Helper to generate a camera angle significantly different from reference
 const generateDistinctCameraPosition = () => {
@@ -51,9 +51,38 @@ export default function PracticeGame() {
         
         // Generate distractor shapes by mutating the base shape
         // This ensures they are "similar but different"
-        const shapeB = mutateVoxelStructure(shapeA, 3);
-        const shapeC = mutateVoxelStructure(shapeA, 3);
-        const shapeD = mutateVoxelStructure(shapeA, 3);
+        // Validate that mutations are actually different from the original
+        let shapeB, shapeC, shapeD;
+        let attempts = 0;
+        const maxAttempts = 20;
+        
+        do {
+            shapeB = mutateVoxelStructure(shapeA, 3);
+            shapeC = mutateVoxelStructure(shapeA, 3);
+            shapeD = mutateVoxelStructure(shapeA, 3);
+            attempts++;
+            
+            // Check if any mutated shape accidentally matches the original after rotation
+            const bMatches = areShapesIsomorphic(shapeB, shapeA);
+            const cMatches = areShapesIsomorphic(shapeC, shapeA);
+            const dMatches = areShapesIsomorphic(shapeD, shapeA);
+            
+            // Also check if mutated shapes match each other
+            const bcMatch = areShapesIsomorphic(shapeB, shapeC);
+            const bdMatch = areShapesIsomorphic(shapeB, shapeD);
+            const cdMatch = areShapesIsomorphic(shapeC, shapeD);
+            
+            // If all shapes are valid (different from original and each other), break
+            if (!bMatches && !cMatches && !dMatches && !bcMatch && !bdMatch && !cdMatch) {
+                break;
+            }
+            
+            // If we've tried too many times, just use what we have (very unlikely to match)
+            if (attempts >= maxAttempts) {
+                console.warn('Warning: Could not generate guaranteed unique mutations after', maxAttempts, 'attempts');
+                break;
+            }
+        } while (true);
 
         // Generate distinct camera angles for all options
         // For the correct option (shapeA), we MUST ensure the angle is different from reference
