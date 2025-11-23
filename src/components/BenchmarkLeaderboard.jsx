@@ -101,7 +101,7 @@ export default function BenchmarkLeaderboard() {
 
       {/* Desktop Table */}
       <div className="hidden sm:block border border-gray-200 rounded-lg overflow-hidden shadow-sm">
-        <div className="max-h-[400px] overflow-y-auto">
+        <div className="max-h-[480px] overflow-y-auto">
           <table className="w-full text-left text-sm">
             <thead className="bg-gray-50 border-b border-gray-200 text-gray-500 font-medium sticky top-0 z-10">
               <tr>
@@ -155,7 +155,7 @@ export default function BenchmarkLeaderboard() {
           <span className="flex-1"># Model</span>
           <span>Pass@1 (%)</span>
         </div>
-        <div className="max-h-[400px] overflow-y-auto">
+        <div className="max-h-[480px] overflow-y-auto">
           <div className="divide-y divide-gray-100 bg-white">
             {BENCHMARK_DATA.map((row) => (
               <div key={row.model} className={`px-3 py-3 ${row.isBaseline ? 'bg-gray-50/50' : ''}`}>
