@@ -38,11 +38,12 @@ const BENCHMARK_DATA = [
   { rank: 4, model: 'Gemini 3.0 Pro Preview', company: 'Google', pass1: 9.55 },
   { rank: 5, model: 'Llama 3.2', company: 'Meta', pass1: 8.3 },
   { rank: 6, model: 'GPT-5.1 (High Reasoning)', company: 'OpenAI', pass1: 7.51 },
-  { rank: 7, model: 'Pixtral 12B', company: 'Mistral', pass1: 5.05 },
-  { rank: 8, model: 'Random Guessing', company: 'Baseline', pass1: 5.0, isBaseline: true },
-  { rank: 9, model: 'Claude Sonnet 4.5', company: 'Anthropic', pass1: 4.51 },
-  { rank: 10, model: 'MiniMax 01 Vision', company: 'MiniMax', pass1: 4.0 },
-  { rank: 11, model: 'Grok 4', company: 'xAI', pass1: 2.95 },
+  { rank: 7, model: 'Claude Opus 4.5', company: 'Anthropic', pass1: 6.27 },
+  { rank: 8, model: 'Pixtral 12B', company: 'Mistral', pass1: 5.05 },
+  { rank: 9, model: 'Random Guessing', company: 'Baseline', pass1: 5.0, isBaseline: true },
+  { rank: 10, model: 'Claude Sonnet 4.5', company: 'Anthropic', pass1: 4.51 },
+  { rank: 11, model: 'MiniMax 01 Vision', company: 'MiniMax', pass1: 4.0 },
+  { rank: 12, model: 'Grok 4', company: 'xAI', pass1: 2.95 },
 ];
 
 export default function BenchmarkLeaderboard() {
