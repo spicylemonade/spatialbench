@@ -191,7 +191,7 @@ export default function BenchmarkLeaderboard() {
         </div>
       </div>
       <div className="mt-4 text-xs text-gray-400 text-center px-4">
-        Last updated: November 2024 • 50 problems (25 3D, 25 2D)
+        Last updated: November 2025 • 50 problems (25 3D, 25 2D)
       </div>
       <div className="mt-2 text-xs text-gray-500 text-center px-4">
         <span className="font-medium">Note:</span> Using probability-normalized scoring, state-of-the-art AI models score just above the 5% random guessing baseline, while humans achieve 80%.
