@@ -37,15 +37,16 @@ const BENCHMARK_DATA = [
   { rank: 3, model: 'Qwen-2.5-VL-72B-Instruct', company: 'Qwen', pass1: 12.9 },
   { rank: 4, model: 'GPT-5.2', company: 'OpenAI', pass1: 10.27 },
   { rank: 5, model: 'Gemini 3.0 Pro Preview', company: 'Google', pass1: 9.55 },
-  { rank: 6, model: 'Llama 3.2', company: 'Meta', pass1: 8.3 },
-  { rank: 7, model: 'GPT-5.1 (High Reasoning)', company: 'OpenAI', pass1: 7.51 },
-  { rank: 8, model: 'Claude Opus 4.6', company: 'Anthropic', pass1: 6.29 },
-  { rank: 9, model: 'Claude Opus 4.5', company: 'Anthropic', pass1: 6.27 },
-  { rank: 10, model: 'Pixtral 12B', company: 'Mistral', pass1: 5.05 },
-  { rank: 11, model: 'Random Guessing', company: 'Baseline', pass1: 5.0, isBaseline: true },
-  { rank: 12, model: 'Claude Sonnet 4.5', company: 'Anthropic', pass1: 4.51 },
-  { rank: 13, model: 'MiniMax 01 Vision', company: 'MiniMax', pass1: 4.0 },
-  { rank: 14, model: 'Grok 4', company: 'xAI', pass1: 2.95 },
+  { rank: 6, model: 'GPT-5.4 (XHigh Reasoning)', company: 'OpenAI', pass1: 8.54 },
+  { rank: 7, model: 'Llama 3.2', company: 'Meta', pass1: 8.3 },
+  { rank: 8, model: 'GPT-5.1 (High Reasoning)', company: 'OpenAI', pass1: 7.51 },
+  { rank: 9, model: 'Claude Opus 4.6', company: 'Anthropic', pass1: 6.29 },
+  { rank: 10, model: 'Claude Opus 4.5', company: 'Anthropic', pass1: 6.27 },
+  { rank: 11, model: 'Pixtral 12B', company: 'Mistral', pass1: 5.05 },
+  { rank: 12, model: 'Random Guessing', company: 'Baseline', pass1: 5.0, isBaseline: true },
+  { rank: 13, model: 'Claude Sonnet 4.5', company: 'Anthropic', pass1: 4.51 },
+  { rank: 14, model: 'MiniMax 01 Vision', company: 'MiniMax', pass1: 4.0 },
+  { rank: 15, model: 'Grok 4', company: 'xAI', pass1: 2.95 },
 ];
 
 export default function BenchmarkLeaderboard() {
@@ -193,7 +194,7 @@ export default function BenchmarkLeaderboard() {
         </div>
       </div>
       <div className="mt-4 text-xs text-gray-400 text-center px-4">
-        Last updated: November 2025 • 50 problems (25 3D, 25 2D)
+        Last updated: March 2026 • 50 problems (25 3D, 25 2D)
       </div>
       <div className="mt-2 text-xs text-gray-500 text-center px-4">
         <span className="font-medium">Note:</span> Using probability-normalized scoring, state-of-the-art AI models score just above the 5% random guessing baseline, while humans achieve 80%.

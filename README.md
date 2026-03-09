@@ -21,6 +21,7 @@ Using the **Probability Equivalence Method**:
 
 - **Human Baseline**: 80.0%
 - **Gemini 3.0 Pro Preview**: 9.55%
+- **GPT-5.4 (XHigh Reasoning)**: 8.54%
 - **GPT-5.1 (High Reasoning)**: 7.51%
 - **Random Guessing**: 5.0%
 
