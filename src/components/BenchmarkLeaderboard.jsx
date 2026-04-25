@@ -36,19 +36,20 @@ const BENCHMARK_DATA = [
   { rank: 2, model: 'Qwen3-VL-235B-A22B-Instruct', company: 'Qwen', pass1: 13.5 },
   { rank: 3, model: 'GPT-5.5 (XHigh Reasoning)', company: 'OpenAI', pass1: 13.2 },
   { rank: 4, model: 'Qwen-2.5-VL-72B-Instruct', company: 'Qwen', pass1: 12.9 },
-  { rank: 5, model: 'GPT-5.2', company: 'OpenAI', pass1: 10.27 },
-  { rank: 6, model: 'Gemini 3.0 Pro Preview', company: 'Google', pass1: 9.55 },
-  { rank: 7, model: 'Llama 3.2', company: 'Meta', pass1: 8.3 },
-  { rank: 8, model: 'GPT-5.4 (XHigh Reasoning)', company: 'OpenAI', pass1: 8.29 },
-  { rank: 9, model: 'Gemini 3.1 Pro Preview', company: 'Google', pass1: 7.55 },
-  { rank: 10, model: 'GPT-5.1 (High Reasoning)', company: 'OpenAI', pass1: 7.51 },
-  { rank: 11, model: 'Claude Opus 4.6', company: 'Anthropic', pass1: 6.29 },
-  { rank: 12, model: 'Claude Opus 4.5', company: 'Anthropic', pass1: 6.27 },
-  { rank: 13, model: 'Pixtral 12B', company: 'Mistral', pass1: 5.05 },
-  { rank: 14, model: 'Random Guessing', company: 'Baseline', pass1: 5.0, isBaseline: true },
-  { rank: 15, model: 'Claude Sonnet 4.5', company: 'Anthropic', pass1: 4.51 },
-  { rank: 16, model: 'MiniMax 01 Vision', company: 'MiniMax', pass1: 4.0 },
-  { rank: 17, model: 'Grok 4', company: 'xAI', pass1: 2.95 },
+  { rank: 5, model: 'Claude Opus 4.7', company: 'Anthropic', pass1: 11.5 },
+  { rank: 6, model: 'GPT-5.2', company: 'OpenAI', pass1: 10.27 },
+  { rank: 7, model: 'Gemini 3.0 Pro Preview', company: 'Google', pass1: 9.55 },
+  { rank: 8, model: 'Llama 3.2', company: 'Meta', pass1: 8.3 },
+  { rank: 9, model: 'GPT-5.4 (XHigh Reasoning)', company: 'OpenAI', pass1: 8.29 },
+  { rank: 10, model: 'Gemini 3.1 Pro Preview', company: 'Google', pass1: 7.55 },
+  { rank: 11, model: 'GPT-5.1 (High Reasoning)', company: 'OpenAI', pass1: 7.51 },
+  { rank: 12, model: 'Claude Opus 4.6', company: 'Anthropic', pass1: 6.29 },
+  { rank: 13, model: 'Claude Opus 4.5', company: 'Anthropic', pass1: 6.27 },
+  { rank: 14, model: 'Pixtral 12B', company: 'Mistral', pass1: 5.05 },
+  { rank: 15, model: 'Random Guessing', company: 'Baseline', pass1: 5.0, isBaseline: true },
+  { rank: 16, model: 'Claude Sonnet 4.5', company: 'Anthropic', pass1: 4.51 },
+  { rank: 17, model: 'MiniMax 01 Vision', company: 'MiniMax', pass1: 4.0 },
+  { rank: 18, model: 'Grok 4', company: 'xAI', pass1: 2.95 },
 ];
 
 export default function BenchmarkLeaderboard() {
@@ -196,7 +197,7 @@ export default function BenchmarkLeaderboard() {
         </div>
       </div>
       <div className="mt-4 text-xs text-gray-400 text-center px-4">
-        Last updated: March 2026 • 50 problems (25 3D, 25 2D)
+        Last updated: April 2026 • 50 problems (25 3D, 25 2D)
       </div>
       <div className="mt-2 text-xs text-gray-500 text-center px-4">
         <span className="font-medium">Note:</span> The nominal random baseline is 5.0%, but with only 25 questions per section, single-run random variance is wide (exact 95% interval ≈ 0.5%–12.3%). Scores near this band should be interpreted cautiously.

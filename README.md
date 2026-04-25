@@ -23,6 +23,7 @@ Using the **Probability Equivalence Method**:
 - **Qwen3-VL-235B-A22B-Instruct**: 13.5%
 - **GPT-5.5 (XHigh Reasoning)**: 13.2%
 - **Qwen-2.5-VL-72B-Instruct**: 12.9%
+- **Claude Opus 4.7**: 11.5%
 - **Gemini 3.0 Pro Preview**: 9.55%
 - **GPT-5.4 (XHigh Reasoning)**: 8.29%
 - **GPT-5.1 (High Reasoning)**: 7.51%
