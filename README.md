@@ -20,6 +20,7 @@ Visit the live benchmark at: **https://spicylemonade.github.io/spatialbench/**
 Using the **Probability Equivalence Method**:
 
 - **Human Baseline**: 80.0%
+- **GPT-5.5 (XHigh Reasoning)**: 14.25%
 - **Gemini 3.1 Pro Preview**: 10.05%
 - **Gemini 3.0 Pro Preview**: 9.55%
 - **GPT-5.4 (XHigh Reasoning)**: 8.54%

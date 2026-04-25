@@ -11,6 +11,7 @@ BASE_DIR = "/home/spicylemon/Documents/spatialbench"
 
 # Data
 data = [
+    {'model': 'GPT-5.5\n(XHigh Reasoning)', 'full_name': 'GPT-5.5\n(XHigh Reasoning)', 'company': 'OpenAI', 'score': 14.25, 'color': '#000000', 'logo': 'src/logos/openai.svg'},
     {'model': 'Qwen', 'full_name': 'Qwen3-VL-235B\n-A22B-Instruct', 'company': 'Qwen', 'score': 13.5, 'color': '#D95E00', 'logo': 'src/logos/qwen-color.svg'},
     {'model': 'Qwen', 'full_name': 'Qwen-2.5-VL\n-72B-Instruct', 'company': 'Qwen', 'score': 12.9, 'color': '#D95E00', 'logo': 'src/logos/qwen-color.svg'},
     {'model': 'Gemini 3.1 Pro\nPreview', 'full_name': 'Gemini 3.1 Pro\nPreview', 'company': 'Google', 'score': 10.05, 'color': '#34A853', 'logo': 'src/logos/gemini-color.svg'},
