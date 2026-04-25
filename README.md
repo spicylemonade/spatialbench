@@ -20,14 +20,15 @@ Visit the live benchmark at: **https://spicylemonade.github.io/spatialbench/**
 Using the **Probability Equivalence Method**:
 
 - **Human Baseline**: 80.0%
-- **GPT-5.5 (XHigh Reasoning)**: 13.91%
-- **Gemini 3.1 Pro Preview**: 10.05%
+- **Qwen3-VL-235B-A22B-Instruct**: 13.5%
+- **GPT-5.5 (XHigh Reasoning)**: 13.2%
+- **Qwen-2.5-VL-72B-Instruct**: 12.9%
 - **Gemini 3.0 Pro Preview**: 9.55%
-- **GPT-5.4 (XHigh Reasoning)**: 8.54%
+- **GPT-5.4 (XHigh Reasoning)**: 8.29%
 - **GPT-5.1 (High Reasoning)**: 7.51%
 - **Random Guessing**: 5.0%
 
-Current AI models struggle significantly with spatial reasoning tasks that humans excel at, scoring just above the 5% random baseline.
+Current AI models struggle significantly with spatial reasoning tasks that humans excel at. Because the benchmark has only 25 questions per section, the nominal 5.0% random baseline has a wide exact 95% single-run interval of about 0.5% to 12.3%.
 
 ## 🛠️ Technology Stack
 
@@ -67,7 +68,7 @@ Since 3D questions have a 25% random guess rate (1/4) while 2D questions have on
 
 **Formula:** `Final = (S_2D + S_3D^2.16) / 2`
 
-This ensures random guessing yields exactly 5% and prevents "stat-padding" on easier questions.
+This gives a nominal random-guess baseline of 5.0% and prevents "stat-padding" on easier questions. In a finite 50-question run, however, random guessing has non-trivial variance; the exact 95% random interval is about 0.5% to 12.3%.
 
 *Methodology developed by Alejandro Zarzuelo*
 

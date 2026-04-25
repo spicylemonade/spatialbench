@@ -11,13 +11,13 @@ BASE_DIR = "/home/spicylemon/Documents/spatialbench"
 
 # Data
 data = [
-    {'model': 'GPT-5.5\n(XHigh Reasoning)', 'full_name': 'GPT-5.5\n(XHigh Reasoning)', 'company': 'OpenAI', 'score': 13.91, 'color': '#000000', 'logo': 'src/logos/openai.svg'},
     {'model': 'Qwen', 'full_name': 'Qwen3-VL-235B\n-A22B-Instruct', 'company': 'Qwen', 'score': 13.5, 'color': '#D95E00', 'logo': 'src/logos/qwen-color.svg'},
+    {'model': 'GPT-5.5\n(XHigh Reasoning)', 'full_name': 'GPT-5.5\n(XHigh Reasoning)', 'company': 'OpenAI', 'score': 13.2, 'color': '#000000', 'logo': 'src/logos/openai.svg'},
     {'model': 'Qwen', 'full_name': 'Qwen-2.5-VL\n-72B-Instruct', 'company': 'Qwen', 'score': 12.9, 'color': '#D95E00', 'logo': 'src/logos/qwen-color.svg'},
-    {'model': 'Gemini 3.1 Pro\nPreview', 'full_name': 'Gemini 3.1 Pro\nPreview', 'company': 'Google', 'score': 10.05, 'color': '#34A853', 'logo': 'src/logos/gemini-color.svg'},
     {'model': 'Gemini 3.0 Pro\nPreview', 'full_name': 'Gemini 3.0 Pro\nPreview', 'company': 'Google', 'score': 9.6, 'color': '#34A853', 'logo': 'src/logos/gemini-color.svg'},
-    {'model': 'GPT-5.4\n(XHigh Reasoning)', 'full_name': 'GPT-5.4\n(XHigh Reasoning)', 'company': 'OpenAI', 'score': 8.54, 'color': '#000000', 'logo': 'src/logos/openai.svg'},
     {'model': 'Llama 3.2', 'full_name': 'Llama 3.2', 'company': 'Meta', 'score': 8.3, 'color': '#0081FB', 'logo': 'src/logos/meta-color.svg'},
+    {'model': 'GPT-5.4\n(XHigh Reasoning)', 'full_name': 'GPT-5.4\n(XHigh Reasoning)', 'company': 'OpenAI', 'score': 8.29, 'color': '#000000', 'logo': 'src/logos/openai.svg'},
+    {'model': 'Gemini 3.1 Pro\nPreview', 'full_name': 'Gemini 3.1 Pro\nPreview', 'company': 'Google', 'score': 7.55, 'color': '#34A853', 'logo': 'src/logos/gemini-color.svg'},
     {'model': 'GPT-5.1\n(High Reasoning)', 'full_name': 'GPT-5.1\n(High Reasoning)', 'company': 'OpenAI', 'score': 7.5, 'color': '#000000', 'logo': 'src/logos/openai.svg'},
     {'model': 'Pixtral 12B', 'full_name': 'Pixtral 12B', 'company': 'Mistral', 'score': 5.0, 'color': '#F53288', 'logo': 'src/logos/mistral-color.svg'},
     {'model': 'Random Guessing\n(Baseline)', 'full_name': 'Random Guessing\n(Baseline)', 'company': 'Baseline', 'score': 5.0, 'color': '#CCCCCC', 'logo': None},

@@ -33,14 +33,14 @@ const COMPANY_LOGOS = {
 
 const BENCHMARK_DATA = [
   { rank: 1, model: 'Human Baseline', company: 'Human', pass1: 80.0, isBaseline: true },
-  { rank: 2, model: 'GPT-5.5 (XHigh Reasoning)', company: 'OpenAI', pass1: 13.91 },
-  { rank: 3, model: 'Qwen3-VL-235B-A22B-Instruct', company: 'Qwen', pass1: 13.5 },
+  { rank: 2, model: 'Qwen3-VL-235B-A22B-Instruct', company: 'Qwen', pass1: 13.5 },
+  { rank: 3, model: 'GPT-5.5 (XHigh Reasoning)', company: 'OpenAI', pass1: 13.2 },
   { rank: 4, model: 'Qwen-2.5-VL-72B-Instruct', company: 'Qwen', pass1: 12.9 },
   { rank: 5, model: 'GPT-5.2', company: 'OpenAI', pass1: 10.27 },
-  { rank: 6, model: 'Gemini 3.1 Pro Preview', company: 'Google', pass1: 10.05 },
-  { rank: 7, model: 'Gemini 3.0 Pro Preview', company: 'Google', pass1: 9.55 },
-  { rank: 8, model: 'GPT-5.4 (XHigh Reasoning)', company: 'OpenAI', pass1: 8.54 },
-  { rank: 9, model: 'Llama 3.2', company: 'Meta', pass1: 8.3 },
+  { rank: 6, model: 'Gemini 3.0 Pro Preview', company: 'Google', pass1: 9.55 },
+  { rank: 7, model: 'Llama 3.2', company: 'Meta', pass1: 8.3 },
+  { rank: 8, model: 'GPT-5.4 (XHigh Reasoning)', company: 'OpenAI', pass1: 8.29 },
+  { rank: 9, model: 'Gemini 3.1 Pro Preview', company: 'Google', pass1: 7.55 },
   { rank: 10, model: 'GPT-5.1 (High Reasoning)', company: 'OpenAI', pass1: 7.51 },
   { rank: 11, model: 'Claude Opus 4.6', company: 'Anthropic', pass1: 6.29 },
   { rank: 12, model: 'Claude Opus 4.5', company: 'Anthropic', pass1: 6.27 },
@@ -77,7 +77,7 @@ export default function BenchmarkLeaderboard() {
              <div className="bg-blue-50 border-l-4 border-blue-500 p-4 mb-4">
                <p className="text-sm text-gray-700 font-medium mb-2">Probability Equivalence Scoring</p>
                <p className="text-xs text-gray-600 leading-relaxed mb-2">
-                 Since 3D questions (1/4 chance) are easier to guess than 2D questions (1/20 chance), we normalize difficulty by raising the 3D score to the power of 2.16. The final score is the average of the raw 2D score and the adjusted 3D score. This ensures random guessing yields exactly 5% across both sections.
+                 Since 3D questions (1/4 chance) are easier to guess than 2D questions (1/20 chance), we normalize difficulty by raising the 3D score to the power of 2.16. The final score is the average of the raw 2D score and the adjusted 3D score. The nominal random-guess baseline is 5.0%, though a single 50-question run has a wide exact 95% random interval of about 0.5% to 12.3%.
                </p>
                <p className="text-xs text-gray-500 italic">
                  Scoring developed by Alejandro Zarzuelo
@@ -199,7 +199,7 @@ export default function BenchmarkLeaderboard() {
         Last updated: March 2026 • 50 problems (25 3D, 25 2D)
       </div>
       <div className="mt-2 text-xs text-gray-500 text-center px-4">
-        <span className="font-medium">Note:</span> Using probability-normalized scoring, state-of-the-art AI models score just above the 5% random guessing baseline, while humans achieve 80%.
+        <span className="font-medium">Note:</span> The nominal random baseline is 5.0%, but with only 25 questions per section, single-run random variance is wide (exact 95% interval ≈ 0.5%–12.3%). Scores near this band should be interpreted cautiously.
       </div>
 
       {/* Structural Foundation */}
