@@ -33,7 +33,7 @@ const COMPANY_LOGOS = {
 
 const BENCHMARK_DATA = [
   { rank: 1, model: 'Human Baseline', company: 'Human', pass1: 80.0, isBaseline: true },
-  { rank: 2, model: 'GPT-5.5 (XHigh Reasoning)', company: 'OpenAI', pass1: 14.25 },
+  { rank: 2, model: 'GPT-5.5 (XHigh Reasoning)', company: 'OpenAI', pass1: 13.91 },
   { rank: 3, model: 'Qwen3-VL-235B-A22B-Instruct', company: 'Qwen', pass1: 13.5 },
   { rank: 4, model: 'Qwen-2.5-VL-72B-Instruct', company: 'Qwen', pass1: 12.9 },
   { rank: 5, model: 'GPT-5.2', company: 'OpenAI', pass1: 10.27 },
