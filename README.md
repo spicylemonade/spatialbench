@@ -19,6 +19,7 @@ Visit the live benchmark at: **https://spicylemonade.github.io/spatialbench/**
 
 Using the **Probability Equivalence Method**:
 
+- **GPT-6 Astra (Max Reasoning + Code Interpreter)**: 91.78% (23/25 2D, 24/25 3D; 47/50 raw)
 - **Human Baseline**: 80.0%
 - **Qwen3-VL-235B-A22B-Instruct**: 13.5%
 - **GPT-5.5 (XHigh Reasoning)**: 13.2%
@@ -29,7 +30,7 @@ Using the **Probability Equivalence Method**:
 - **GPT-5.1 (High Reasoning)**: 7.51%
 - **Random Guessing**: 5.0%
 
-Current AI models struggle significantly with spatial reasoning tasks that humans excel at. Because the benchmark has only 25 questions per section, the nominal 5.0% random baseline has a wide exact 95% single-run interval of about 0.5% to 12.3%.
+GPT-6 Astra is the first tested AI result on this leaderboard to exceed the 80.0% human baseline under probability-equivalence scoring. Most earlier models remain near the random band. Because the benchmark has only 25 questions per section, the nominal 5.0% random baseline has a wide exact 95% single-run interval of about 0.5% to 12.3%.
 
 ## 🛠️ Technology Stack
 
@@ -92,4 +93,3 @@ Follow [@spicey_lemonade](https://twitter.com/spicey_lemonade) on Twitter/X
 ---
 
 *Why spatial reasoning matters:* Just as humans use visual tracing and mental rotation for complex tasks like circuit analysis, CAD engineering, and molecular biology, future AI systems must possess these intrinsic capabilities to fully automate physical world reasoning.
-

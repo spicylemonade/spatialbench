@@ -4,13 +4,15 @@ from matplotlib.offsetbox import OffsetImage, AnnotationBbox
 import cairosvg
 import io
 import os
+from pathlib import Path
 from PIL import Image
 
 # Base path
-BASE_DIR = "/home/spicylemon/Documents/spatialbench"
+BASE_DIR = Path(__file__).resolve().parents[1]
 
 # Data
 data = [
+    {'model': 'GPT-6 Astra\n(Max + Python)', 'full_name': 'GPT-6 Astra\n(Max + Python)', 'company': 'OpenAI', 'score': 91.78, 'color': '#000000', 'logo': 'src/logos/openai.svg'},
     {'model': 'Qwen', 'full_name': 'Qwen3-VL-235B\n-A22B-Instruct', 'company': 'Qwen', 'score': 13.5, 'color': '#D95E00', 'logo': 'src/logos/qwen-color.svg'},
     {'model': 'GPT-5.5\n(XHigh Reasoning)', 'full_name': 'GPT-5.5\n(XHigh Reasoning)', 'company': 'OpenAI', 'score': 13.2, 'color': '#000000', 'logo': 'src/logos/openai.svg'},
     {'model': 'Qwen', 'full_name': 'Qwen-2.5-VL\n-72B-Instruct', 'company': 'Qwen', 'score': 12.9, 'color': '#D95E00', 'logo': 'src/logos/qwen-color.svg'},
@@ -31,7 +33,7 @@ scores = [d['score'] for d in data]
 colors = [d['color'] for d in data]
 
 # Setup Figure
-fig, ax = plt.subplots(figsize=(16, 8))
+fig, ax = plt.subplots(figsize=(18, 9))
 fig.patch.set_facecolor('white')
 
 # Vertical Bars
@@ -53,8 +55,9 @@ ax.tick_params(axis='y', left=False, labelleft=False)
 ax.tick_params(axis='x', bottom=False, labelbottom=False)
 
 # Add Score Labels on Top
+max_score = max(scores)
 for i, v in enumerate(scores):
-    ax.text(i, v + 0.3, str(v), ha='center', fontweight='bold', fontsize=12, color='black')
+    ax.text(i, v + max_score * 0.012, str(v), ha='center', fontweight='bold', fontsize=11, color='black')
 
 # Add Text Description at Top
 plt.figtext(0.08, 0.94, "SpatialBench - AI Spatial Reasoning Benchmark", fontsize=20, fontweight='bold', fontname='sans-serif')
@@ -89,9 +92,11 @@ def get_image_from_svg(svg_rel_path):
         return None
 
 # Add Labels and Logos below bars
+logo_y = -max_score * 0.045
+label_y = -max_score * 0.085
 for i, d in enumerate(data):
     # Text Label (Model Name) - Moved down to make room for logo
-    ax.text(i, -2.0, d['full_name'], ha='center', va='top', fontsize=10, linespacing=1.2)
+    ax.text(i, label_y, d['full_name'], ha='center', va='top', fontsize=8, linespacing=1.15)
     
     # Logo
     logo_path = d['logo']
@@ -101,14 +106,15 @@ for i, d in enumerate(data):
             # Adjust zoom based on actual image size
             imagebox = OffsetImage(logo_img, zoom=0.08) 
             
-            # Position logo at y=-0.9 (just below the x-axis line)
-            ab = AnnotationBbox(imagebox, (i, -0.9), frameon=False, box_alignment=(0.5, 0.5))
+            # Position the logo just below the x-axis using a scale-relative offset.
+            ab = AnnotationBbox(imagebox, (i, logo_y), frameon=False, box_alignment=(0.5, 0.5))
             ax.add_artist(ab)
         else:
             print(f"Failed to load image for {d['model']}")
 
 # Adjust margins
-plt.subplots_adjust(bottom=0.2, top=0.75, left=0.08, right=0.95)
+ax.set_ylim(-max_score * 0.22, max_score * 1.08)
+plt.subplots_adjust(bottom=0.23, top=0.75, left=0.08, right=0.97)
 
 # Save
 output_path = os.path.join(BASE_DIR, 'spatialbench_leaderboard_v2.png')
