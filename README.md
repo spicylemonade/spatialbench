@@ -21,6 +21,7 @@ Using the **Probability Equivalence Method**:
 
 - **GPT-6 Astra (Max Reasoning + Code Interpreter)**: 91.78% (23/25 2D, 24/25 3D; 47/50 raw)
 - **Human Baseline**: 80.0%
+- **GPT-6 Astra (Max Reasoning, No Tools)**: 67.07% (24/25 2D, 16/25 3D; 40/50 raw)
 - **Qwen3-VL-235B-A22B-Instruct**: 13.5%
 - **GPT-5.5 (XHigh Reasoning)**: 13.2%
 - **Qwen-2.5-VL-72B-Instruct**: 12.9%
@@ -30,7 +31,7 @@ Using the **Probability Equivalence Method**:
 - **GPT-5.1 (High Reasoning)**: 7.51%
 - **Random Guessing**: 5.0%
 
-GPT-6 Astra is the first tested AI result on this leaderboard to exceed the 80.0% human baseline under probability-equivalence scoring. Most earlier models remain near the random band. Because the benchmark has only 25 questions per section, the nominal 5.0% random baseline has a wide exact 95% single-run interval of about 0.5% to 12.3%.
+GPT-6 Astra scored 67.07% without tools and 91.78% with Code Interpreter, making the tool-enabled run the first tested AI result on this leaderboard to exceed the 80.0% human baseline under probability-equivalence scoring. Most earlier models remain near the random band. Because the benchmark has only 25 questions per section, the nominal 5.0% random baseline has a wide exact 95% single-run interval of about 0.5% to 12.3%.
 
 ## 🛠️ Technology Stack
 

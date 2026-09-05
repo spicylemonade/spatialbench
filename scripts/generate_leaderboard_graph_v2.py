@@ -13,6 +13,7 @@ BASE_DIR = Path(__file__).resolve().parents[1]
 # Data
 data = [
     {'model': 'GPT-6 Astra\n(Max + Python)', 'full_name': 'GPT-6 Astra\n(Max + Python)', 'company': 'OpenAI', 'score': 91.78, 'color': '#000000', 'logo': 'src/logos/openai.svg'},
+    {'model': 'GPT-6 Astra\n(Max, No Tools)', 'full_name': 'GPT-6 Astra\n(Max, No Tools)', 'company': 'OpenAI', 'score': 67.07, 'color': '#4B5563', 'logo': 'src/logos/openai.svg'},
     {'model': 'Qwen', 'full_name': 'Qwen3-VL-235B\n-A22B-Instruct', 'company': 'Qwen', 'score': 13.5, 'color': '#D95E00', 'logo': 'src/logos/qwen-color.svg'},
     {'model': 'GPT-5.5\n(XHigh Reasoning)', 'full_name': 'GPT-5.5\n(XHigh Reasoning)', 'company': 'OpenAI', 'score': 13.2, 'color': '#000000', 'logo': 'src/logos/openai.svg'},
     {'model': 'Qwen', 'full_name': 'Qwen-2.5-VL\n-72B-Instruct', 'company': 'Qwen', 'score': 12.9, 'color': '#D95E00', 'logo': 'src/logos/qwen-color.svg'},
